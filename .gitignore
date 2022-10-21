@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/FitnessTracker/FitnessTracker/obj
+/FitnessTracker/FitnessTracker/bin
+/FitnessTracker/.vs/
