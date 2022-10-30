@@ -10,12 +10,24 @@
     <Compile Update="Controls\Display_FocusArea.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Display_Workout.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window_CreateWorkout.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\Display_FocusArea.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\Display_Workout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window_CreateWorkout.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

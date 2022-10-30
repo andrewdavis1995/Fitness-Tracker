@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FitnessTracker.Controls
+namespace MoneyMatters.Controls.Popups
 {
     /// <summary>
-    /// Interaction logic for Display_FocusArea.xaml
+    /// Interaction logic for Popup_CreateAccount.xaml
     /// </summary>
-    public partial class Display_FocusArea : UserControl
+    public partial class Popup_CreateAccount : UserControl
     {
-        public Display_FocusArea()
+        public Popup_CreateAccount()
         {
             InitializeComponent();
         }
