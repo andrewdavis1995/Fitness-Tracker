@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="FitnessTracker.Controls.Display_FocusArea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FitnessTracker.Controls"
+             mc:Ignorable="d" Height="50" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+        <Label Name="lblColour" Background="{StaticResource ExerciseColour_Arm}" Grid.Column="0" Margin="5, 10" />
+        <TextBlock Name="txtExercise" Grid.Column="1" Foreground="{StaticResource TextColour}" Margin="5" FontSize="14" VerticalAlignment="Center" Text="Exercise Name"/>
+        <TextBlock Name="txtPoints" Grid.Column="2" Foreground="{StaticResource TextColour}" Margin="5" FontSize="14" VerticalAlignment="Center" Text="888" HorizontalAlignment="Right" FontWeight="Bold"/>
+    </Grid>
+</UserControl>
