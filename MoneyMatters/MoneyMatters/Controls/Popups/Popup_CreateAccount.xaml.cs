@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Andrew_2_0_Libraries.Models;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoneyMatters.Controls.Popups
 {
@@ -20,9 +9,36 @@ namespace MoneyMatters.Controls.Popups
     /// </summary>
     public partial class Popup_CreateAccount : UserControl
     {
-        public Popup_CreateAccount()
+        Action _cancelCallback;
+        Action<BankAccount> _confirmCallback;
+
+        public Popup_CreateAccount(Action cancelCallback, Action<BankAccount> confirmCallback)
         {
             InitializeComponent();
+
+            _cancelCallback = cancelCallback;
+            _confirmCallback = confirmCallback;
+
+            // configure buttons
+            cmdCancel.Configure("Cancel");
+            cmdConfirm.Configure("Confirm");
+        }
+
+        /// <summary>
+        /// Caallback for the cancel button
+        /// </summary>
+        private void cmdCancel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _cancelCallback?.Invoke();
+        }
+
+        /// <summary>
+        /// Callback for the confirm button
+        /// </summary>
+        private void cmdConfirm_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var account = new BankAccount(Guid.NewGuid(), "Fixed saver", "Bank name", "0102043", 241.77, 34.2, InterestType.None, DateTime.Now);
+            _confirmCallback?.Invoke(account);
         }
     }
 }

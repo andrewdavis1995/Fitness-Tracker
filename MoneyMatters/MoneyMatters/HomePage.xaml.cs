@@ -19,18 +19,18 @@ namespace MoneyMatters
     {
         float _columnCount = 1;
         FinanceController _controller = new();
-        Popup_CreateAccount _creationPopup = new();
+        Popup_CreateAccount ? _creationPopup;
 
         public HomePage()
         {
             InitializeComponent();
             cmdNewAccount.Configure("New Account");
         }
-        
+
         /// <summary>
-         /// Displays the supplied list of recipes
-         /// </summary>
-         /// <param name="recipes">The recipes to display</param>
+        /// Displays the supplied list of recipes
+        /// </summary>
+        /// <param name="recipes">The recipes to display</param>
         private void DisplayAccounts_()
         {
             grdAccounts.Children.Clear();
@@ -150,14 +150,19 @@ namespace MoneyMatters
         /// </summary>
         private void cmdNewAccount_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            _creationPopup = new Popup_CreateAccount();
+            _creationPopup = new Popup_CreateAccount(
+                () => { grdOverall?.Children.Remove(_creationPopup); },
+                (a) =>
+                {
+                    _controller.AddAccount(a);
+                    grdOverall?.Children.Remove(_creationPopup);
+                    DisplayAccounts_();
+                }
+            );
 
             // show popup
             PopupController.AboveAll(_creationPopup);
             grdOverall?.Children.Add(_creationPopup);
-
-            _controller.AddAccount("Banana", "Republic", "0192309", 242.1, 0.4, InterestType.None);
-            DisplayAccounts_();
         }
 
         /// <summary>

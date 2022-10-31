@@ -7,7 +7,8 @@
         <SolidColorBrush x:Key="TextColour">#FFFFFF</SolidColorBrush>
         <SolidColorBrush x:Key="BackgroundColour">#eaeaea</SolidColorBrush>
         <SolidColorBrush x:Key="HighlightColour">#FFFFFF</SolidColorBrush>
-        <SolidColorBrush x:Key="ControlColour">#249EA3</SolidColorBrush>
+        <SolidColorBrush x:Key="ControlColour">#FF001F64</SolidColorBrush>
+        <SolidColorBrush x:Key="ControlColourTransparent">#77001F64</SolidColorBrush>
         <SolidColorBrush x:Key="PopupOverlay" Color="#ca000000"/>
 
         <FontFamily x:Key="Roboto Thin">pack://application:,,,/Fonts/#Roboto Light</FontFamily>

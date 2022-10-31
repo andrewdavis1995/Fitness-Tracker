@@ -4,30 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoneyMatters.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" FontFamily="{StaticResource Roboto Thin}"
             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource PopupOverlay}" Grid.ColumnSpan="1000" Grid.RowSpan="1000">
-    <Border CornerRadius="8" Margin="40" MaxWidth="600" MaxHeight="250" Background="{StaticResource TextColour}">
+    <Border CornerRadius="8" Margin="40" MaxWidth="650" MaxHeight="550" Background="{StaticResource TextColour}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
-                <RowDefinition MaxHeight="200"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
             <Border CornerRadius="8, 8, 0, 0" Background="{StaticResource GradientBackground}">
-                <Label Margin="10, 0" Name="lblTitle"  Content="Please Confirm" Foreground="{StaticResource TextColour}" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Margin="10, 0" Name="lblTitle" Content="Configure Bank Account" Foreground="{StaticResource TextColour}" FontSize="14" VerticalContentAlignment="Center"/>
             </Border>
 
-            <TextBlock Name="lblMessage" Margin="10" Text="Please Confirm you'd like to do what you are doing" Foreground="{StaticResource GradientBackground}" Grid.Row="1" FontSize="16" TextWrapping="Wrap"/>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Account name:" Margin="10, 10, 10, 2" FontSize="14"/>
+                <Border Width="250" BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="5, 2, 5, 5" Background="{StaticResource ControlColourTransparent}" HorizontalAlignment="Left">
+                    <TextBox Name="txtFilter" Grid.Column="1" MaxLength="25" FontSize="14" CaretBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" VerticalContentAlignment="Center" KeyboardNavigation.TabNavigation="None" Height="34" VerticalAlignment="Top" Margin="10,1"/>
+                </Border>
+            </StackPanel>
 
             <Grid Grid.Row="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <local:Input_Button x:Name="cmdCancel" Grid.Column="0" Margin="5"/>
-                <local:Input_Button x:Name="cmdConfirm" Grid.Column="1" Margin="5"/>
+                <local:Input_Button x:Name="cmdCancel" Grid.Column="0" Margin="5" MouseLeftButtonDown="cmdCancel_MouseLeftButtonDown"/>
+                <local:Input_Button x:Name="cmdConfirm" Grid.Column="1" Margin="5" MouseLeftButtonDown="cmdConfirm_MouseLeftButtonDown"/>
             </Grid>
         </Grid>
     </Border>
