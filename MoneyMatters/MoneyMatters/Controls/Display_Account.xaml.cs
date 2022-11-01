@@ -1,6 +1,7 @@
 ﻿using Andrew_2_0_Libraries.Models;
 using System;
 using System.Reflection;
+using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,6 +14,13 @@ namespace MoneyMatters.Controls
     /// </summary>
     public partial class Display_Account : UserControl
     {
+        bool _total = false;
+
+        public Display_Account()
+        { 
+            InitializeComponent();
+        }
+
         public Display_Account(BankAccount account)
         {
             InitializeComponent();
@@ -34,8 +42,25 @@ namespace MoneyMatters.Controls
             { }
         }
 
+        public void ConfigureAsTotal(double value)
+        {
+            _total = true;
+            txtAccountName.Text = "Total";
+            txtBalance.Text = "£" + value.ToString("0.00");
+            txtBankName.Visibility = Visibility.Collapsed;
+            txtAccountNumber.Visibility = Visibility.Collapsed;
+            txtUpdated.Visibility = Visibility.Collapsed;
+            imgIcon.Visibility = Visibility.Collapsed;
+            txtBalance.FontSize *= 1.25d;
+            colTitle.Height = new GridLength(1, GridUnitType.Star);
+            txtAccountName.VerticalAlignment = VerticalAlignment.Bottom;
+            txtBalance.VerticalAlignment = VerticalAlignment.Top;
+        }
+
         private void UserControl_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
+            if (_total) return;
+
             Highlight.Visibility = System.Windows.Visibility.Visible;
         }
 

@@ -25,7 +25,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Name="txtTotal" Text="£0.00" FontSize="18" Foreground="{StaticResource TextColour}" Margin="10" VerticalAlignment="Top"/>
             <Grid Height="35" Grid.Row="100" MouseLeftButtonDown="cmdExit_MouseLeftButtonDown">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

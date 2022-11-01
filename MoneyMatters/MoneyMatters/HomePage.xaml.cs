@@ -44,6 +44,13 @@ namespace MoneyMatters
             var col = 1;
             var row = 1;
 
+            // display total price
+            var totalControl = new Display_Account();
+            Grid.SetRow(totalControl, row);
+            Grid.SetColumn(totalControl, col++);
+            totalControl.ConfigureAsTotal(_controller.GetAccounts().Sum(a => a.GetBalance()));
+            grdAccounts.Children.Add(totalControl);
+
             // iterate through each recipe
             foreach (var ac in accounts)
             {
@@ -62,9 +69,6 @@ namespace MoneyMatters
 
             // "No recipes" message
             lblNoAccounts.Visibility = accounts.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
-
-            // display total price
-            txtTotal.Text = "£" + _controller.GetAccounts().Sum(a => a.GetBalance()).ToString("0.00");
         }
 
         /// <summary>
