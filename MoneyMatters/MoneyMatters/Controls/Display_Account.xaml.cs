@@ -1,4 +1,5 @@
 ﻿using Andrew_2_0_Libraries.Models;
+using MoneyMatters.Helpers;
 using System;
 using System.Reflection;
 using System.Security.Principal;
@@ -44,7 +45,7 @@ namespace MoneyMatters.Controls
             {
                 imgIcon.Source = new BitmapImage(new Uri("pack://application:,,,/"
                     + Assembly.GetExecutingAssembly().FullName +
-                    ";component/Images/Icons/" + account.GetBankName() + ".png"));
+                    ";component/Images/Icons/" + BankNameHelper.GetBankName(account.GetBankName()) + ".png"));
             }
             catch (Exception)
             { }

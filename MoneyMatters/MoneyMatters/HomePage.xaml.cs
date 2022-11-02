@@ -38,8 +38,8 @@ namespace MoneyMatters
             // find recipes that match the filters
             var accounts = _controller.GetAccounts();
 
-            // set up the grid
-            SetupRecipeGrid_(accounts.Count);
+            // set up the grid (add 1 for the Total display)
+            SetupAccountGrid_(accounts.Count + 1);
 
             var col = 1;
             var row = 1;
@@ -111,7 +111,7 @@ namespace MoneyMatters
         /// Add the necessary columns and rows
         /// </summary>
         /// <param name="numAccountCount">How many recipes there are</param>
-        private void SetupRecipeGrid_(int numAccountCount)
+        private void SetupAccountGrid_(int numAccountCount)
         {
             ResetSetup_();
 
@@ -158,7 +158,7 @@ namespace MoneyMatters
                 () => { grdOverall?.Children.Remove(_creationPopup); },
                 (a) =>
                 {
-                    _controller.AddAccount(a);
+                    _controller.UpdateAccount(a);
                     grdOverall?.Children.Remove(_creationPopup);
                     DisplayAccounts_();
                 }

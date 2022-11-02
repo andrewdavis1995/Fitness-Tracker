@@ -21,8 +21,20 @@
             <StackPanel Grid.Row="1">
                 <TextBlock Text="Account name:" Margin="10, 10, 10, 2" FontSize="14"/>
                 <Border Width="250" BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="5, 2, 5, 5" Background="{StaticResource ControlColourTransparent}" HorizontalAlignment="Left">
-                    <TextBox Name="txtFilter" Grid.Column="1" MaxLength="25" FontSize="14" CaretBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" VerticalContentAlignment="Center" KeyboardNavigation.TabNavigation="None" Height="34" VerticalAlignment="Top" Margin="10,1"/>
+                    <TextBox Name="txtAccountName" Grid.Column="1" MaxLength="25" FontSize="14" CaretBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" VerticalContentAlignment="Center" KeyboardNavigation.TabNavigation="None" Height="34" VerticalAlignment="Top" Margin="10,1"/>
                 </Border>
+                <TextBlock Text="Bank name:" Margin="10, 5, 10, 2" FontSize="14"/>
+                <Border Width="250" BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="5, 2, 5, 5" Background="{StaticResource ControlColourTransparent}" HorizontalAlignment="Left">
+                    <TextBox Name="txtBankName" Grid.Column="1" MaxLength="20" FontSize="14" CaretBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" VerticalContentAlignment="Center" KeyboardNavigation.TabNavigation="None" Height="34" VerticalAlignment="Top" Margin="10,1"/>
+                </Border>
+                <TextBlock Text="Account number:" Margin="10, 5, 10, 2" FontSize="14"/>
+                <Border Width="250" BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="5, 2, 5, 5" Background="{StaticResource ControlColourTransparent}" HorizontalAlignment="Left">
+                    <TextBox Name="txtAccountNumber" Grid.Column="1" MaxLength="10" FontSize="14" CaretBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" VerticalContentAlignment="Center" KeyboardNavigation.TabNavigation="None" Height="34" VerticalAlignment="Top" Margin="10,1" PreviewTextInput="txtAccountNumber_PreviewTextInput"/>
+                </Border>
+                <TextBlock Text="Interest Rate:" Margin="10, 5, 10, 2" FontSize="14"/>
+                <local:Input_Numeric x:Name="inpInterest" HorizontalAlignment="Left"/>
+                <TextBlock Text="Interest Type:" Margin="10, 5, 10, 2" FontSize="14"/>
+                <ComboBox x:Name="cmbInterestType" HorizontalAlignment="Left"/>
             </StackPanel>
 
             <Grid Grid.Row="100">
