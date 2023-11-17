@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="MoneyMatters.Controls.EditableLabel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MoneyMatters.Controls"
+             mc:Ignorable="d" FontFamily="{StaticResource Roboto}"
+             Height="40" d:DesignWidth="600">
+    <Border CornerRadius="15" Name="brdBackground" BorderThickness="3" Margin="0">
+        <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseLeftButtonDown="Grid_MouseLeftButtonDown" Margin="2">
+            <TextBlock Name="lblContent" Foreground="White" VerticalAlignment="Center" Text="Content here" Margin="5" FontSize="14" Padding="2"/>
+            <TextBox Name="txtContent" Text="Content here innit" Foreground="White" FontSize="14" LostFocus="txtContent_LostFocus"
+                     VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Margin="5" MaxLength="30"
+                     KeyDown="txtContent_KeyDown" CaretBrush="White" Visibility="Collapsed" PreviewTextInput="txtContent_PreviewTextInput"/>
+        </Grid>
+    </Border>
+</UserControl>

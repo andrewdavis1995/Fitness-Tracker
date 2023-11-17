@@ -19,12 +19,41 @@ namespace MoneyMatters
     {
         float _columnCount = 1;
         FinanceController _controller = new();
-        Popup_CreateAccount ? _creationPopup;
+        Popup_CreateAccount? _creationPopup;
+        Popup_AccountInformation _infoPopup;
 
         public HomePage()
         {
             InitializeComponent();
             cmdNewAccount.Configure("New Account");
+            lhsAccounts.Initialise(() => { DisplayAccounts_(); }, "List", true);
+            lhsExit.Initialise(() => { Environment.Exit(0); }, "Exit");
+            chkBlurValues.AddTitle("Blur Values");
+            chkBlurValues.AddCallbacks(() => BlurValues_(), () => UnblurValues_());
+        }
+
+        /// <summary>
+        /// Blurs the values on accounts
+        /// </summary>
+        private void BlurValues_()
+        {
+            foreach (var control in grdAccounts.Children)
+            {
+                var disp = control as Display_Account;
+                disp?.BlurValue();
+            }
+        }
+
+        /// <summary>
+        /// Un-blurs the values on accounts
+        /// </summary>
+        private void UnblurValues_()
+        {
+            foreach (var control in grdAccounts.Children)
+            {
+                var disp = control as Display_Account;
+                disp?.UnblurValue();
+            }
         }
 
         /// <summary>
@@ -33,6 +62,8 @@ namespace MoneyMatters
         /// <param name="recipes">The recipes to display</param>
         private void DisplayAccounts_()
         {
+            HideWindows_();
+
             grdAccounts.Children.Clear();
 
             // find recipes that match the filters
@@ -69,6 +100,12 @@ namespace MoneyMatters
 
             // "No recipes" message
             lblNoAccounts.Visibility = accounts.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+            totalControl.Visibility = accounts.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void HideWindows_()
+        {
+            // TODO: hide windows
         }
 
         /// <summary>
@@ -102,7 +139,37 @@ namespace MoneyMatters
             var display = new Display_Account(account);
             Grid.SetColumn(display, col);
             Grid.SetRow(display, row);
-            //display.MouseLeftButtonDown += (sender, e) => ShowRecipe_(recipe);
+            display.MouseLeftButtonDown += (sender, e) =>
+            {
+                DetailsPage.Display(display.GetAccount(), this);
+
+                // TEMPORARILY DISABLING THIS
+                //_infoPopup = new Popup_AccountInformation((a) =>
+                //{
+                //    _controller.UpdateAccount(a);
+                //    DisplayAccounts_();
+                //    grdOverall.Children.Remove(_infoPopup);
+                //}, (a) =>
+                //{
+                //    grdOverall.Children.Remove(_infoPopup);
+
+                //    _creationPopup = new Popup_CreateAccount(
+                //        () => { grdOverall?.Children.Remove(_creationPopup); },
+                //        (b) =>
+                //        {
+                //            _controller.UpdateAccount(b);
+                //            grdOverall?.Children.Remove(_creationPopup);
+                //            DisplayAccounts_();
+                //        }, a
+                //    );
+
+                //    // show popup
+                //    PopupController.AboveAll(_creationPopup);
+                //    grdOverall?.Children.Add(_creationPopup);
+                //},
+                //account);
+                //grdOverall.Children.Add(_infoPopup);
+            };
 
             grdAccounts.Children.Add(display);
         }
@@ -170,12 +237,13 @@ namespace MoneyMatters
         }
 
         /// <summary>
-        /// Event handler for the Exit button
+        /// Update the specified account
         /// </summary>
-        private void cmdExit_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        /// <param name="account">The account to update</param>
+        public void UpdateAccount(BankAccount account)
         {
-            // exit
-            Environment.Exit(0);
+            _controller.UpdateAccount(account);
+            DisplayAccounts_();
         }
     }
 }

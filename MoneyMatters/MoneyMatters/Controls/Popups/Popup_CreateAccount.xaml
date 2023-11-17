@@ -31,10 +31,10 @@
                 <Border Width="250" BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="5, 2, 5, 5" Background="{StaticResource ControlColourTransparent}" HorizontalAlignment="Left">
                     <TextBox Name="txtAccountNumber" Grid.Column="1" MaxLength="10" FontSize="14" CaretBrush="White" BorderThickness="0" Background="{x:Null}" Foreground="White" VerticalContentAlignment="Center" KeyboardNavigation.TabNavigation="None" Height="34" VerticalAlignment="Top" Margin="10,1" PreviewTextInput="txtAccountNumber_PreviewTextInput"/>
                 </Border>
-                <TextBlock Text="Interest Rate:" Margin="10, 5, 10, 2" FontSize="14"/>
+                <TextBlock Name="lblRate" Text="Interest Rate:" Margin="10, 5, 10, 2" FontSize="14"/>
                 <local:Input_Numeric x:Name="inpInterest" HorizontalAlignment="Left"/>
                 <TextBlock Text="Interest Type:" Margin="10, 5, 10, 2" FontSize="14"/>
-                <ComboBox x:Name="cmbInterestType" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="cmbInterestType" HorizontalAlignment="Left" BorderThickness="0" Width="120" Margin="10, 5" FontSize="14"/>
             </StackPanel>
 
             <Grid Grid.Row="100">

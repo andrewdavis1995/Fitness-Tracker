@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace MoneyMatters.Helpers
@@ -6,7 +8,7 @@ namespace MoneyMatters.Helpers
     internal static class BankNameHelper
     {
         static string[] _supportedBanks = new string[] {
-            "YBS", "Yorkshire Building Society", "RBS", "Royal Bank of Scotland", "Tesco", "Santander", "Atom", "Chase",
+            "Yorkshire Building Society", "Royal Bank of Scotland", "Tesco", "Santander", "Atom", "Chase",
             "HSBC", "Barclays", "Natwest", "Lloyds"
         };
     
@@ -75,6 +77,15 @@ namespace MoneyMatters.Helpers
                 }
             }
             return satisfied;
+        }
+
+        /// <summary>
+        /// Gets all supported banks
+        /// </summary>
+        /// <returns>Ordered list of all supported banks</returns>
+        public static List<string> GetBankNames()
+        {
+            return _supportedBanks.OrderBy(a => a).ToList();
         }
     }
 }

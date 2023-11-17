@@ -9,20 +9,20 @@
              Height="50" Width="130" IsEnabledChanged="UserControl_IsEnabledChanged">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         
-        <Border BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="2" HorizontalAlignment="Stretch" Height="40" Background="{StaticResource ControlColourTransparent}" Grid.Column="1">
+        <Border Name="brdContent" BorderThickness="3" CornerRadius="20" BorderBrush="{StaticResource ControlColour}" Margin="2" HorizontalAlignment="Stretch" Height="40" Background="{StaticResource ControlColourTransparent}" Grid.Column="1">
             <TextBox Name="txtContent" VerticalAlignment="Center" BorderThickness="0" Margin="5" Background="{x:Null}" Text="1" MaxLength="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16" CommandManager.PreviewExecuted="txtContent_PreviewExecuted" PreviewTextInput="txtContent_PreviewTextInput" AllowDrop="False" LostFocus="txtContent_LostFocus" Foreground="White" KeyboardNavigation.TabNavigation="None"/>
         </Border>
 
         <Border Name="lblDecrease" Grid.Column="0" Margin="5, 8" Height="20" Width="20" Background="{StaticResource ControlColour}" MouseLeftButtonDown="lblDecrease_MouseLeftButtonDown" CornerRadius="10">
-            <Label Content="-" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0" FontSize="10" Foreground="White" FontWeight="Bold"/>
+            <Label Name="lblDecreaseText" Content="-" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0" FontSize="10" Foreground="White" FontWeight="Bold"/>
         </Border>
         <Border Name="lblIncrease" Grid.Column="2" Margin="5, 8" Height="20" Width="20" Background="{StaticResource ControlColour}" MouseLeftButtonDown="lblIncrease_MouseLeftButtonDown" CornerRadius="10">
-            <Label Content="+" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0" FontSize="10" Foreground="White" FontWeight="Bold"/>
+            <Label Name="lblIncreaseText" Content="+" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0" FontSize="10" Foreground="White" FontWeight="Bold"/>
         </Border>
     </Grid>
 </UserControl>

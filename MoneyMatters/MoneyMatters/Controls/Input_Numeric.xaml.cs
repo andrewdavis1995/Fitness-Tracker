@@ -1,6 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using Color = System.Windows.Media.Color;
 
 namespace MoneyMatters.Controls
 {
@@ -11,6 +14,7 @@ namespace MoneyMatters.Controls
     {
         float _maxValue = 99;
         bool _decimal = false;
+        string _format = string.Empty;
 
         /// <summary>
         /// Constructor
@@ -26,11 +30,12 @@ namespace MoneyMatters.Controls
         /// <param name="canBeDecimal">Whether the input can include decimal numbers</param>
         /// <param name="maxValue">The highest value that this input can accept</param>
         /// <param name="maxLength">The highest number of characters that this input should accept</param>
-        public void Initialise(bool canBeDecimal, float maxValue, int maxLength = 2)
+        public void Initialise(bool canBeDecimal, float maxValue, int maxLength = 2, string format = "")
         {
             _maxValue = maxValue;
             _decimal = canBeDecimal;
             txtContent.MaxLength = maxLength;
+            _format = format;
         }
 
         /// <summary>
@@ -105,12 +110,12 @@ namespace MoneyMatters.Controls
             var currentValue = float.Parse(txtContent.Text);
             if (currentValue >= 1)
             {
-                txtContent.Text = (currentValue - 1).ToString();
+                txtContent.Text = _format != string.Empty ? (currentValue - 1).ToString(_format) : (currentValue - 1).ToString();
             }
             else if (currentValue > 0)
             {
                 // could be a decimal, so go to 0 (rather than a negative decimal)
-                txtContent.Text = "0";
+                txtContent.Text = "0.00";
             }
         }
 
@@ -123,12 +128,12 @@ namespace MoneyMatters.Controls
             var currentValue = float.Parse(txtContent.Text);
             if (currentValue <= (_maxValue - 1))
             {
-                txtContent.Text = (currentValue + 1).ToString();
+                txtContent.Text = _format != string.Empty ? (currentValue + 1).ToString(_format) : (currentValue + 1).ToString();
             }
             else if (currentValue < _maxValue)
             {
                 // could be a decimal, so go to maximum value (rather than a decimal more than the maximum)
-                txtContent.Text = _maxValue.ToString();
+                txtContent.Text =  _maxValue.ToString();
             }
         }
 
@@ -139,6 +144,13 @@ namespace MoneyMatters.Controls
         {
             if (txtContent.Text.Length < 1 || float.Parse(txtContent.Text) == 0)
                 txtContent.Text = "1";
+
+            // format correctly
+            if (_format != string.Empty)
+            {
+                var currentValue = float.Parse(txtContent.Text);
+                txtContent.Text = currentValue.ToString(_format);
+            }
         }
 
         /// <summary>
@@ -159,6 +171,24 @@ namespace MoneyMatters.Controls
         {
             txtContent.IsEnabled = IsEnabled;
             Visibility = IsEnabled ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Sets the colour of the control
+        /// </summary>
+        /// <param name="c">The colour to set</param>
+        public void SetColour(Color c)
+        {
+            var defaultCol = brdContent.BorderBrush as SolidColorBrush;
+            var newCol = new SolidColorBrush(c);
+
+            brdContent.BorderBrush = newCol;
+            brdContent.Background = new SolidColorBrush(Color.FromArgb(100, c.R, c.G, c.B));
+
+            lblDecrease.Background = newCol;
+            lblIncrease.Background = newCol;
+            lblDecreaseText.Foreground = defaultCol;
+            lblIncreaseText.Foreground = defaultCol;
         }
     }
 }

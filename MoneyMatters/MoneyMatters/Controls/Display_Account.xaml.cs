@@ -36,7 +36,7 @@ namespace MoneyMatters.Controls
 
             // setup display with correct data
             txtAccountName.Text = account.GetAccountName();
-            txtBalance.Text = "£" + account.GetBalance().ToString("0.00");
+            txtBalance.Text = "£" + string.Format("{0:n}", account.GetBalance());
             txtBankName.Text = account.GetBankName();
             txtAccountNumber.Text = account.GetAccountNumber().ToString();
             txtUpdated.Text = "Last Updated: " + account.GetUpdated().ToString("dd/MM/yyyy");
@@ -45,7 +45,7 @@ namespace MoneyMatters.Controls
             {
                 imgIcon.Source = new BitmapImage(new Uri("pack://application:,,,/"
                     + Assembly.GetExecutingAssembly().FullName +
-                    ";component/Images/Icons/" + BankNameHelper.GetBankName(account.GetBankName()) + ".png"));
+                    ";component/Images/Icons/" + BankNameHelper.GetBankName(account.GetBankName()).Replace(" ", "_") + ".png")); ;
             }
             catch (Exception)
             { }
@@ -58,15 +58,15 @@ namespace MoneyMatters.Controls
         {
             _total = true;
             txtAccountName.Text = "Total";
-            txtBalance.Text = "£" + value.ToString("0.00");
+            txtBalance.Text = "£" + string.Format("{0:n}", value);
             txtBankName.Visibility = Visibility.Collapsed;
-            txtAccountNumber.Visibility = Visibility.Collapsed;
+            txtAccountNumber.Visibility = Visibility.Hidden;
             txtUpdated.Visibility = Visibility.Collapsed;
             imgIcon.Visibility = Visibility.Collapsed;
-            txtBalance.FontSize *= 1.25d;
-            colTitle.Height = new GridLength(1, GridUnitType.Star);
-            txtAccountName.VerticalAlignment = VerticalAlignment.Bottom;
-            txtBalance.VerticalAlignment = VerticalAlignment.Top;
+            txtBalance.FontSize *= 1.2d;
+            grdInner.Margin = new Thickness(10);
+            colIcon.Width = new GridLength(0);
+            rowBottom.Height = new GridLength(0);
         }
 
         private void UserControl_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -83,8 +83,23 @@ namespace MoneyMatters.Controls
         {
             Highlight.Visibility = System.Windows.Visibility.Collapsed;
         }
-        
-        
+
+        /// <summary>
+        /// Blurs the values on accounts
+        /// </summary>
+        public void BlurValue()
+        {
+            textBlur.Radius = 20;
+        }
+
+        /// <summary>
+        /// Un-blurs the values on accounts
+        /// </summary>
+        public void UnblurValue()
+        {
+            textBlur.Radius = 0;
+        }
+
         /// <summary>
         /// Accessor for the account linked to this display
         /// </summary>

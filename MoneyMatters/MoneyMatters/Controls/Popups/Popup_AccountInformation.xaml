@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="MoneyMatters.Controls.Popups.Popup_AccountInformation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MoneyMatters.Controls"
+             mc:Ignorable="d" FontFamily="{StaticResource Roboto Thin}"
+            d:DesignHeight="300" d:DesignWidth="400" Background="{StaticResource PopupOverlay}" Grid.ColumnSpan="1000" Grid.RowSpan="1000">
+    <Border CornerRadius="8" Margin="40" MaxWidth="450" MaxHeight="350" Background="{StaticResource GradientBackground}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <TextBlock Name="txtAccountName" Text="Account name" Margin="10, 10, 10, 2" FontSize="30" Foreground="White" TextWrapping="Wrap" FontFamily="{StaticResource Roboto}" HorizontalAlignment="Center"/>
+                <TextBlock Name="txtBankName" Text="Bank name:" Margin="10, 5, 10, 2" FontSize="18" Foreground="White" HorizontalAlignment="Center"/>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="txtAccountNumber" Text="Account number:" Margin="10, 5, 10, 2" FontSize="14" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock Name="txtInterestRate" Text="Interest Rate:" Margin="10, 5, 10, 2" FontSize="14" Foreground="White" Grid.Column="1" HorizontalAlignment="Center"/>
+                </Grid>
+                <TextBlock Name="txtBalance" Text="Balance:" Margin="10, 5, 10, 2" FontSize="14" Foreground="White" HorizontalAlignment="Center"/>
+                <local:Input_Numeric x:Name="inpBalance" HorizontalAlignment="Center" Width="180"/>
+            </StackPanel>
+
+            <Grid Grid.Row="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <local:Input_Button x:Name="cmdConfirm" Grid.Column="1" Margin="5" MouseLeftButtonDown="cmdConfirm_MouseLeftButtonDown"/>
+                <local:Input_Button x:Name="cmdEdit" Grid.Column="0" Margin="5" MouseLeftButtonDown="cmdEdit_MouseLeftButtonDown"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+
