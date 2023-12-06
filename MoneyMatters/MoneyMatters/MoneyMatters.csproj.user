@@ -11,7 +11,13 @@
     <Compile Update="Controls\EditableLabel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ErrorMessage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Input_Checkbox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PaymentsSelection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Popups\Popup_CreateAccount.xaml.cs">
@@ -19,6 +25,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="ComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\AccountDetailsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -28,13 +37,22 @@
     <Page Update="Controls\EditableLabel.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\ErrorMessage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\Input_Checkbox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PaymentsSelection.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Popups\Popup_AccountInformation.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Popups\Popup_CreateAccount.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ScrollbarStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

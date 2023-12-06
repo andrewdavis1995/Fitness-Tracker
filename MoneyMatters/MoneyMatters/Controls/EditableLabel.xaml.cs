@@ -56,6 +56,8 @@ namespace MoneyMatters.Controls
             lblContent.Text = existingData.ToString(format);
             txtContent.Text = existingData.ToString(format);
             _empty = false;
+
+            Visibility = Visibility.Visible;
         }
 
         /// <summary>

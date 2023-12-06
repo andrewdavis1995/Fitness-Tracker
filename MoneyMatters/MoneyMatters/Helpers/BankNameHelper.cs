@@ -9,7 +9,7 @@ namespace MoneyMatters.Helpers
     {
         static string[] _supportedBanks = new string[] {
             "Yorkshire Building Society", "Royal Bank of Scotland", "Tesco", "Santander", "Atom", "Chase",
-            "HSBC", "Barclays", "Natwest", "Lloyds"
+            "HSBC", "Barclays", "Natwest", "Lloyds", "Revolut", "Degiro", "NS&I"
         };
     
         /// <summary>

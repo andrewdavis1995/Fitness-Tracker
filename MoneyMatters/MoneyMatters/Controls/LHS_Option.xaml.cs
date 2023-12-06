@@ -28,7 +28,7 @@ namespace MoneyMatters.Controls
         /// Initialises the button with the message and callbacks provided
         /// </summary>
         /// <param name="callback">The function to call when the button is clicked</param>
-        /// <param name="imgIcon">The image to use as the icon</param>
+        /// <param name="icon">The image to use as the icon</param>
         /// <param name="selected">Whether the button is currently selected</param>
         /// <param name="setColourOnClick">Whether to set the colour of the button once it is clicked</param>
         public void Initialise(Action callback, string icon, bool selected = false, bool setColourOnClick = true)
@@ -60,6 +60,14 @@ namespace MoneyMatters.Controls
         internal void Deselect()
         {
             SelectedBackground.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Select the button
+        /// </summary>
+        internal void Select()
+        {
+            SelectedBackground.Visibility = Visibility.Visible;
         }
 
         /// <summary>

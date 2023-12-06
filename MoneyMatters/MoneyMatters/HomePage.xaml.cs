@@ -7,8 +7,6 @@ using System.Windows.Controls.Primitives;
 using Andrew_2_0_Libraries.Controllers;
 using Andrew_2_0_Libraries.Models;
 using MoneyMatters.Controls;
-using MoneyMatters.Controls.Popups;
-using MoneyMatters.Helpers;
 
 namespace MoneyMatters
 {
@@ -19,14 +17,13 @@ namespace MoneyMatters
     {
         float _columnCount = 1;
         FinanceController _controller = new();
-        Popup_CreateAccount? _creationPopup;
-        Popup_AccountInformation _infoPopup;
 
         public HomePage()
         {
             InitializeComponent();
             cmdNewAccount.Configure("New Account");
             lhsAccounts.Initialise(() => { DisplayAccounts_(); }, "List", true);
+            lhsTransactions.Initialise(() => { DisplayTransactions_(); }, "Import");
             lhsExit.Initialise(() => { Environment.Exit(0); }, "Exit");
             chkBlurValues.AddTitle("Blur Values");
             chkBlurValues.AddCallbacks(() => BlurValues_(), () => UnblurValues_());
@@ -56,6 +53,13 @@ namespace MoneyMatters
             }
         }
 
+        private void DisplayTransactions_()
+        {
+            HideWindows_();
+
+            TransactionPage.Visibility = Visibility.Visible;
+        }
+
         /// <summary>
         /// Displays the supplied list of recipes
         /// </summary>
@@ -63,6 +67,7 @@ namespace MoneyMatters
         private void DisplayAccounts_()
         {
             HideWindows_();
+            lhsAccounts.Select();
 
             grdAccounts.Children.Clear();
 
@@ -105,7 +110,13 @@ namespace MoneyMatters
 
         private void HideWindows_()
         {
-            // TODO: hide windows
+            // reset buttons
+            lhsTransactions.Deselect();
+            lhsAccounts.Deselect();
+
+            // hide displays
+            TransactionPage.Visibility = Visibility.Collapsed;
+            DetailsPage.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -142,33 +153,6 @@ namespace MoneyMatters
             display.MouseLeftButtonDown += (sender, e) =>
             {
                 DetailsPage.Display(display.GetAccount(), this);
-
-                // TEMPORARILY DISABLING THIS
-                //_infoPopup = new Popup_AccountInformation((a) =>
-                //{
-                //    _controller.UpdateAccount(a);
-                //    DisplayAccounts_();
-                //    grdOverall.Children.Remove(_infoPopup);
-                //}, (a) =>
-                //{
-                //    grdOverall.Children.Remove(_infoPopup);
-
-                //    _creationPopup = new Popup_CreateAccount(
-                //        () => { grdOverall?.Children.Remove(_creationPopup); },
-                //        (b) =>
-                //        {
-                //            _controller.UpdateAccount(b);
-                //            grdOverall?.Children.Remove(_creationPopup);
-                //            DisplayAccounts_();
-                //        }, a
-                //    );
-
-                //    // show popup
-                //    PopupController.AboveAll(_creationPopup);
-                //    grdOverall?.Children.Add(_creationPopup);
-                //},
-                //account);
-                //grdOverall.Children.Add(_infoPopup);
             };
 
             grdAccounts.Children.Add(display);
@@ -221,19 +205,7 @@ namespace MoneyMatters
         /// </summary>
         private void cmdNewAccount_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            _creationPopup = new Popup_CreateAccount(
-                () => { grdOverall?.Children.Remove(_creationPopup); },
-                (a) =>
-                {
-                    _controller.UpdateAccount(a);
-                    grdOverall?.Children.Remove(_creationPopup);
-                    DisplayAccounts_();
-                }
-            );
-
-            // show popup
-            PopupController.AboveAll(_creationPopup);
-            grdOverall?.Children.Add(_creationPopup);
+            DetailsPage.Display(this);
         }
 
         /// <summary>

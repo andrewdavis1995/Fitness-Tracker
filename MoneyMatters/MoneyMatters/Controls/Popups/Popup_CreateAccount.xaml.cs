@@ -18,6 +18,8 @@ namespace MoneyMatters.Controls.Popups
         Action<BankAccount> _confirmCallback;
         BankAccount? _bankAccount;
 
+        // TODO: DEPRECATE THIS
+
         public Popup_CreateAccount(Action cancelCallback, Action<BankAccount> confirmCallback, BankAccount? account = null)
         {
             InitializeComponent();
@@ -115,7 +117,7 @@ namespace MoneyMatters.Controls.Popups
 
                 // return the account
                 var account = new BankAccount(id, txtAccountName.Text, txtBankName.Text, txtAccountNumber.Text,
-                    balance, inpInterest.GetValue(), interestType, DateTime.Now, new DateTime());
+                    balance, inpInterest.GetValue(), interestType, DateTime.Now, new DateTime(), AccountType.Savings);
                 _confirmCallback?.Invoke(account);
 
                 // TODO: input for maturing date

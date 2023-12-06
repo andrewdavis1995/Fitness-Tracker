@@ -45,10 +45,13 @@ namespace MoneyMatters.Controls
             {
                 imgIcon.Source = new BitmapImage(new Uri("pack://application:,,,/"
                     + Assembly.GetExecutingAssembly().FullName +
-                    ";component/Images/Icons/" + BankNameHelper.GetBankName(account.GetBankName()).Replace(" ", "_") + ".png")); ;
+                    ";component/Images/Icons/" + BankNameHelper.GetBankName(account.GetBankName()).Replace(" ", "_") + ".png"));
             }
             catch (Exception)
-            { }
+            {
+                //imgIcon.Source = new BitmapImage(new Uri("pack://application:,,,/"
+                    //+ Assembly.GetExecutingAssembly().FullName + ";component/Images/Icons/default.png"));
+            }
         }
 
         /// <summary>

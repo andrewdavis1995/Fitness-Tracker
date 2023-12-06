@@ -21,7 +21,7 @@
             <local:Input_Checkbox x:Name="chkBlurValues" Margin="5, 0"/>
             <local:Input_Button x:Name="cmdNewAccount" Width="100" BorderThickness="0" HorizontalAlignment="Right" Margin="5, 10, 10, 5" MouseLeftButtonDown="cmdNewAccount_MouseLeftButtonDown"/>
         </StackPanel>
-        <Label Name="lblNoAccounts" Grid.Row="1" Grid.Column="1" Content="No accounts to display" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Visibility="Collapsed" Foreground="{StaticResource ControlColour}"/>
+        <Label Name="lblNoAccounts" Grid.Row="1" Grid.Column="1" Content="No accounts to display" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Visibility="Collapsed" Foreground="#242424"/>
 
         <Grid Grid.RowSpan="10" Background="{StaticResource GradientBackground}">
             <Grid.RowDefinitions>
@@ -33,6 +33,7 @@
 
             <StackPanel Grid.Row="1" Margin="0" Height="Auto" VerticalAlignment="Top">
                 <local:LHS_Option x:Name="lhsAccounts"/>
+                <local:LHS_Option x:Name="lhsTransactions"/>
             </StackPanel>
         </Grid>
 
@@ -52,5 +53,8 @@
         </ScrollViewer>
 
         <local:AccountDetailsPage x:Name="DetailsPage" Grid.Column="1" Grid.RowSpan="10" Visibility="Collapsed"/>
+        <local:PaymentsSelection x:Name="TransactionPage" Grid.Column="1" Grid.RowSpan="10" Visibility="Collapsed"/>
+
+        <local:ErrorMessage x:Name="ErrorPopup" Grid.ColumnSpan="1000" Grid.RowSpan="1000" Panel.ZIndex="1001" Visibility="Collapsed"/>
     </Grid>
 </Window>
